@@ -48,8 +48,8 @@ class Directory extends React.Component {
       return (
         <div className='directory-menu'>
             {
-                this.state.sections.map(({ title, imageUrl, id, size, linkUrl}) => ( // Directly access by Destructuring
-                    <MenuItem key={id} title={title.toUpperCase()} imageUrl={imageUrl} size={size} linkUrl={linkUrl} />
+                this.state.sections.map(({ id, ...otherSectionProps}) => ( // Directly access by Destructuring
+                    <MenuItem key={id} {...otherSectionProps} /> //passing rest of the props by using spread operator
                 ))
             }
         </div>
