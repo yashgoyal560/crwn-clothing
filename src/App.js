@@ -38,6 +38,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div>
         <Header />
@@ -48,11 +49,7 @@ class App extends React.Component {
             exact
             path="/signin"
             render={() =>
-              this.props.currentUser ? (
-                <Redirect to="/" />
-              ) : (
-                <SignInAndSignUpPage />
-              )
+              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
             }
           />
         </Switch>
@@ -66,7 +63,7 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)) // Dispatches the action object to all reducers available.
 });
 
 export default connect(
